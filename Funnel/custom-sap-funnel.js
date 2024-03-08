@@ -47,13 +47,13 @@ var getScriptPromisify = (src) => {
           const data = this._myDataSource.data.map((data) => {
               const dataset = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
+                console.log('values');
+                console.log(data[this._myDataSource.metadata.feeds.measures.values[i]]);
                   dataset.push({
                       value: data[this._myDataSource.metadata.feeds.measures.values[i]].raw,
                       name: data[this._myDataSource.metadata.feeds.measures.values[i]].label
                   });
               }
-              console.log('values');
-              console.log(data[this._myDataSource.metadata.feeds.measures.values]);
               console.log('dataset');
               console.log(dataset);
               return dataset;
