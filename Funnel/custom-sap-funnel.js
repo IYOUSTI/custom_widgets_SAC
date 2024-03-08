@@ -46,22 +46,20 @@ var getScriptPromisify = (src) => {
 
           const data = this._myDataSource.data.map((data) => {
               const dataset = [];
-              console.log('datasource');
-              console.log(this._myDataSource.metadata.mainStructureMembers);
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
-                console.log('values');
-                console.log(data[this._myDataSource.metadata.feeds.measures.values[i]]);
-                console.log('labels');
-                console.log(data[this._myDataSource.metadata.mainStructureMembers]);
+                const measuresKey = `measures_${i}`;
+                console.log(measuresKey);
+                const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
+                console.log(measure);
+                const measureValue = this._myDataSource.metadata.feeds.measures.values[i];
+                console.log(measureValue);
                   dataset.push({
-                      value: data[this._myDataSource.metadata.feeds.measures.values[i]].raw,
-                      name: data[this._myDataSource.metadata.mainStructureMembers[i]].label
+                      value: data[measureValue].raw,
+                      name: data[measure].label
                   });
               }
               console.log('dataset');
               console.log(dataset);
-              console.log('datasource');
-              console.log(this._myDataSource);
               return dataset;
           });
 
