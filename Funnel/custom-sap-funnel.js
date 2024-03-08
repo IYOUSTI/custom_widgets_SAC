@@ -50,7 +50,7 @@ var getScriptPromisify = (src) => {
                 console.log('values');
                 console.log(data[this._myDataSource.metadata.feeds.measures.values[i]]);
                 console.log('labels');
-                console.log(data[this._myDataSource.metadata.mainStructureMembers[i]].label);
+                console.log(data[this._myDataSource.metadata.mainStructureMembers['measures_0']]);
                   dataset.push({
                       value: data[this._myDataSource.metadata.feeds.measures.values[i]].raw,
                       name: data[this._myDataSource.metadata.mainStructureMembers[i]].label
