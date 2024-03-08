@@ -48,13 +48,10 @@ var getScriptPromisify = (src) => {
               const dataset = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 const measuresKey = `measures_${i}`;
-                console.log(measuresKey);
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
-                console.log(measure);
                 const measureValue = this._myDataSource.metadata.feeds.measures.values[i];
-                console.log(measureValue);
                   dataset.push({
-                      value: data[measureValue].raw,
+                      value: typeof Number(data[measureValue].raw),
                       name: measure.label
                   });
               }
