@@ -55,7 +55,7 @@ var getScriptPromisify = (src) => {
                 console.log(measureValue);
                   dataset.push({
                       value: data[measureValue].raw,
-                      name: data[measure].label
+                      name: measure.label
                   });
               }
               console.log('dataset');
