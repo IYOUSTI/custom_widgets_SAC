@@ -46,8 +46,8 @@
             }
             
             let dataset = {};
-
-            
+            console.log('issam');
+            console.log(dataset);
 
             const data = this._myDataSource.data.map((data) => {
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
@@ -56,6 +56,8 @@
                   value: data[measure].raw, 
                   name: data[measure].label
                 });
+                console.log('issam');
+                console.log(dataset);
               }
 
 
