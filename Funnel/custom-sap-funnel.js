@@ -48,7 +48,7 @@ var getScriptPromisify = (src) => {
               const dataset = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 console.log('issam');
-                console.log(data[this._myDataSource.metadata.feeds.measures.values[i]]);
+                console.log(data[this._myDataSource.metadata.feeds.measures]);
                   dataset.push({
                       value: data[this._myDataSource.metadata.feeds.measures.values[i]].raw,
                       name: data[this._myDataSource.metadata.feeds.measures.values[i]].label
