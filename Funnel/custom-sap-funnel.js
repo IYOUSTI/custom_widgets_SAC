@@ -56,6 +56,8 @@ var getScriptPromisify = (src) => {
               }
               console.log('dataset');
               console.log(dataset);
+              console.log('datasource');
+              console.log(this._myDataSource);
               return dataset;
           });
 
