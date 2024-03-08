@@ -49,9 +49,11 @@ var getScriptPromisify = (src) => {
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 console.log('values');
                 console.log(data[this._myDataSource.metadata.feeds.measures.values[i]]);
+                console.log(labels);
+                console.log(data[this._myDataSource.metadata.mainStructureMembers[i]].label);
                   dataset.push({
                       value: data[this._myDataSource.metadata.feeds.measures.values[i]].raw,
-                      name: data[this._myDataSource.metadata.feeds.measures.values[i]].label
+                      name: data[this._myDataSource.metadata.mainStructureMembers[i]].label
                   });
               }
               console.log('dataset');
