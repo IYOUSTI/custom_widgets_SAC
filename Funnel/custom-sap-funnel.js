@@ -137,9 +137,8 @@ var getScriptPromisify = (src) => {
                     const absValue = abs_values[dataIndex];
                     const relValue = rel_values[dataIndex];
                     const delta_abs = dataIndex > 0 ? abs_values[dataIndex - 1] - absValue : 0;
-                    const prevElementName = dataIndex > 0 ? params.series.data[dataIndex - 1].name : params.series.data[0].name;
                 
-                    return `${params.name} ▲ ${prevElementName}: ${delta_abs} (${relValue}%)`;
+                    return `▲ : ${delta_abs} (${relValue}%)`;
                 },
               },
               toolbox: {
