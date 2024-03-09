@@ -105,8 +105,6 @@ var getScriptPromisify = (src) => {
                     break;
                 }
 
-
-
                   dataset.push({
                       value: Number(data[measureValue].raw),
                       name: measure.label
@@ -133,7 +131,12 @@ var getScriptPromisify = (src) => {
               },
               tooltip: {
                   trigger: "item",
-                  formatter: "{a} <br/>{b} : {c}%",
+                  formatter: function(params) {
+                    const dataIndex = params.dataIndex;
+                    const absValue = abs_values[dataIndex];
+                    const relValue = rel_values[dataIndex];
+                    return `${params.seriesName} <br/>${params.name} : ${absValue} (${relValue}%)`;
+                },
               },
               toolbox: {
                   feature: {
@@ -157,7 +160,7 @@ var getScriptPromisify = (src) => {
                       max: 100,
                       minSize: "0%",
                       maxSize: "100%",
-                      gap: 0,
+                      gap: 5,
                       label: {
                           show: true,
                           position: "inside",
