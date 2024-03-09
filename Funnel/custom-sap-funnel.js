@@ -59,10 +59,10 @@ var getScriptPromisify = (src) => {
                 abs_values.push(Number(data[measureValue].raw));
 
                 if (i === 0) {
-                  rel_values.push(1);
+                  rel_values.push(100);
                 } else {
                   rel_values.push(
-                    (Number(data[measureValue].raw)) / (Number(data[this._myDataSource.metadata.feeds.measures.values[i-1]].raw))
+                    ((Number(data[measureValue].raw)) / (Number(data[this._myDataSource.metadata.feeds.measures.values[i-1]].raw)) * 100).toFixed(2)
                   );
                 }
                 
@@ -74,28 +74,28 @@ var getScriptPromisify = (src) => {
                     color_measures.push('#1E8449');
                     break;
                   case 2:
-                    if (rel_values[i] < 0.95) {
+                    if (rel_values[i] < 95) {
                       color_measures.push('#C0392B');
                     } else {
                       color_measures.push('#1E8449');
                     }
                     break;
                   case 3:
-                    if (rel_values[i] < 0.99) {
+                    if (rel_values[i] < 99) {
                       color_measures.push('#C0392B');
                     } else {
                       color_measures.push('#1E8449');
                     }
                     break;
                   case 4:
-                    if (rel_values[i] < 0.94) {
+                    if (rel_values[i] < 94) {
                       color_measures.push('#C0392B');
                     } else {
                       color_measures.push('#1E8449');
                     }
                     break;
                   case 5:
-                    if (rel_values[i] < 0.98) {
+                    if (rel_values[i] < 98) {
                       color_measures.push('#C0392B');
                     } else {
                       color_measures.push('#1E8449');
