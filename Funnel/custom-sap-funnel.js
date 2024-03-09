@@ -43,10 +43,9 @@ var getScriptPromisify = (src) => {
           if (!this._myDataSource || this._myDataSource.state !== "success") {
               return;
           }
-
+          const dataset = [];
           const legend_measures = [];
           const data = this._myDataSource.data.map((data) => {
-              const dataset = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 const measuresKey = `measures_${i}`;
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
