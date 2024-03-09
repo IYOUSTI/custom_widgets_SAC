@@ -161,6 +161,7 @@ var getScriptPromisify = (src) => {
                       minSize: "0%",
                       maxSize: "100%",
                       gap: 5,
+                      sort: none,
                       label: {
                           show: true,
                           position: "inside",
