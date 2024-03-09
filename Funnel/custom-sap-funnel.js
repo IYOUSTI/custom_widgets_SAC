@@ -135,7 +135,7 @@ var getScriptPromisify = (src) => {
                     const dataIndex = params.dataIndex;
                     const absValue = abs_values[dataIndex];
                     const relValue = rel_values[dataIndex];
-                    return `${params.seriesName} <br/>${params.name} : ${absValue} (${relValue}%)`;
+                    return `$${params.name} : ${absValue} <br/>(${relValue}%)`;
                 },
               },
               toolbox: {
