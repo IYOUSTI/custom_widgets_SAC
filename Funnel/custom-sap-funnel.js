@@ -117,7 +117,7 @@ var getScriptPromisify = (src) => {
                               fontSize: 20,
                           },
                       },
-                      dataset,
+                      data: dataset,
                   },
               ],
           };
