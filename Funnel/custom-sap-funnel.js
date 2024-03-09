@@ -46,10 +46,12 @@ var getScriptPromisify = (src) => {
 
           const data = this._myDataSource.data.map((data) => {
               const dataset = [];
+              const legend_measures = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 const measuresKey = `measures_${i}`;
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
                 const measureValue = this._myDataSource.metadata.feeds.measures.values[i];
+                legend_measures.push(measure.label);
                   dataset.push({
                       value: Number(data[measureValue].raw),
                       name: measure.label
@@ -78,7 +80,7 @@ var getScriptPromisify = (src) => {
                   },
               },
               legend: {
-                  data: ["Show", "Click", "Visit", "Inquiry", "Order"],
+                  data: legend_measures,
               },
               series: [
                   {
@@ -93,7 +95,7 @@ var getScriptPromisify = (src) => {
                       minSize: "0%",
                       maxSize: "100%",
                       sort: "descending",
-                      gap: 2,
+                      gap: 0,
                       label: {
                           show: true,
                           position: "inside",
@@ -114,7 +116,7 @@ var getScriptPromisify = (src) => {
                               fontSize: 20,
                           },
                       },
-                      data,
+                      dataset,
                   },
               ],
           };
