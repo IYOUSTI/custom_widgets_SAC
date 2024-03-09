@@ -44,9 +44,9 @@ var getScriptPromisify = (src) => {
               return;
           }
 
+          const legend_measures = [];
           const data = this._myDataSource.data.map((data) => {
               const dataset = [];
-              const legend_measures = [];
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 const measuresKey = `measures_${i}`;
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
@@ -59,6 +59,8 @@ var getScriptPromisify = (src) => {
               }
               console.log('dataset');
               console.log(dataset);
+              console.log('legend');
+              console.log(legend_measures);
               return dataset;
           });
 
@@ -66,7 +68,7 @@ var getScriptPromisify = (src) => {
           const option = {
               color: ['#D2EFFF', '#A6E0FF', '#89D1FF', '#1990FF', '#0057D2'],
               title: {
-                  text: "",
+                  text: "Funnel",
               },
               tooltip: {
                   trigger: "item",
