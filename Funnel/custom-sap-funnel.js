@@ -107,7 +107,7 @@ var getScriptPromisify = (src) => {
 
                   dataset.push({
                       value: Number(data[measureValue].raw),
-                      name: `${measure.label} : ${absValue} <br/>(${relValue}%)`
+                      name: `${measure.label} : ${abs_values[i]} <br/>(${rel_values[i]}%)`
                   });
               }
               console.log('dataset');
