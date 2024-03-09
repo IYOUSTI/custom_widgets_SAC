@@ -156,8 +156,6 @@ var getScriptPromisify = (src) => {
                       top: 60,
                       bottom: 60,
                       width: "80%",
-                      min: 0,
-                      max: 100,
                       minSize: "0%",
                       maxSize: "100%",
                       gap: 5,
