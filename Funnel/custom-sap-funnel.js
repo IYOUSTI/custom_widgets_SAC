@@ -43,6 +43,9 @@ var getScriptPromisify = (src) => {
           if (!this._myDataSource || this._myDataSource.state !== "success") {
               return;
           }
+          const abs_values = [];
+          const rel_values = [];
+          const color_measures = [];
           const dataset = [];
           const legend_measures = [];
           const data = this._myDataSource.data.map((data) => {
@@ -50,7 +53,60 @@ var getScriptPromisify = (src) => {
                 const measuresKey = `measures_${i}`;
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
                 const measureValue = this._myDataSource.metadata.feeds.measures.values[i];
+
                 legend_measures.push(measure.label);
+
+                abs_values.push(Number(data[measureValue].raw));
+
+                if (i === 0) {
+                  rel_values.push(1);
+                } else {
+                  rel_values.push(
+                    (Number(data[measureValue].raw)) / (Number(data[this._myDataSource.metadata.feeds.measures.values[i-1]].raw))
+                  );
+                }
+                
+                switch(i) {
+                  case 0:
+                    color_measures.push('#1E8449');
+                    break;
+                  case 1:
+                    color_measures.push('#1E8449');
+                    break;
+                  case 2:
+                    if (rel_values[i] < 0.95) {
+                      color_measures.push('#C0392B');
+                    } else {
+                      color_measures.push('#1E8449');
+                    }
+                    break;
+                  case 3:
+                    if (rel_values[i] < 0.99) {
+                      color_measures.push('#C0392B');
+                    } else {
+                      color_measures.push('#1E8449');
+                    }
+                    break;
+                  case 4:
+                    if (rel_values[i] < 0.94) {
+                      color_measures.push('#C0392B');
+                    } else {
+                      color_measures.push('#1E8449');
+                    }
+                    break;
+                  case 5:
+                    if (rel_values[i] < 0.98) {
+                      color_measures.push('#C0392B');
+                    } else {
+                      color_measures.push('#1E8449');
+                    }
+                    break;
+                  default:
+                    break;
+                }
+
+
+
                   dataset.push({
                       value: Number(data[measureValue].raw),
                       name: measure.label
@@ -60,14 +116,20 @@ var getScriptPromisify = (src) => {
               console.log(dataset);
               console.log('legend');
               console.log(legend_measures);
+              console.log('abs_values');
+              console.log(abs_values);
+              console.log('rel_values');
+              console.log(rel_values);
+              console.log('color_measures');
+              console.log(color_measures);
               return dataset;
           });
 
           const myChart = echarts.init(this._root, "wight");
           const option = {
-              color: ['#D2EFFF', '#A6E0FF', '#89D1FF', '#1990FF', '#0057D2'],
+              color: color_measures,
               title: {
-                  text: "Funnel",
+                  text: "",
               },
               tooltip: {
                   trigger: "item",
@@ -95,7 +157,6 @@ var getScriptPromisify = (src) => {
                       max: 100,
                       minSize: "0%",
                       maxSize: "100%",
-                      sort: "descending",
                       gap: 0,
                       label: {
                           show: true,
@@ -109,8 +170,8 @@ var getScriptPromisify = (src) => {
                           },
                       },
                       itemStyle: {
-                          borderColor: "#fff",
-                          borderWidth: 4,
+                          borderColor: "#515A5A",
+                          borderWidth: 0.5,
                       },
                       emphasis: {
                           label: {
