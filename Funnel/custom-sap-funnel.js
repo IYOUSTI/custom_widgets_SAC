@@ -47,14 +47,11 @@ var getScriptPromisify = (src) => {
           const rel_values = [];
           const color_measures = [];
           const dataset = [];
-          const legend_measures = [];
           const data = this._myDataSource.data.map((data) => {
               for (let i = 0; i < this._myDataSource.metadata.feeds.measures.values.length; i++) {
                 const measuresKey = `measures_${i}`;
                 const measure = this._myDataSource.metadata.mainStructureMembers[measuresKey];
                 const measureValue = this._myDataSource.metadata.feeds.measures.values[i];
-
-                legend_measures.push(measure.label);
 
                 abs_values.push(Number(data[measureValue].raw));
 
@@ -112,8 +109,6 @@ var getScriptPromisify = (src) => {
               }
               console.log('dataset');
               console.log(dataset);
-              console.log('legend');
-              console.log(legend_measures);
               console.log('abs_values');
               console.log(abs_values);
               console.log('rel_values');
