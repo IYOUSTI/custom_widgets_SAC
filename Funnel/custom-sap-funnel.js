@@ -189,10 +189,21 @@ var getScriptPromisify = (src) => {
           // Event listener for clicking on funnel labels
           myChart.on('click', function (params) {
             console.log('Clicked on label:', params.name);
-            this.$selectedMeasure = params.name;
 
         });
+
       }
+
+      onCustomWidgetBeforeUpdate(changedProperties){
+        console.log('changedproperties');
+        console.log(changedProperties);
+        }
+
+      onCustomWidgetAfterUpdate(changedProperties){
+        console.log('changedproperties');
+        console.log(changedProperties);
+        }
+
   }
 
   customElements.define("custom-sap-funnel", Funnel);
