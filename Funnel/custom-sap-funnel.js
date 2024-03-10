@@ -148,8 +148,11 @@ var getScriptPromisify = (src) => {
                   },
               },
               legend: {
-                  show: 'true',
-              },
+                show: true,
+                formatter: function(name) {
+                    return name.split(':')[0].trim();
+                }
+            },
               series: [
                   {
                       name: "Funnel",
