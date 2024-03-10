@@ -185,6 +185,13 @@ var getScriptPromisify = (src) => {
               ],
           };
           myChart.setOption(option);
+
+          // Event listener for clicking on funnel labels
+          myChart.on('click', function (params) {
+            console.log('Clicked on label:', params.name);
+            this.$selectedMeasure = params.name;
+
+        });
       }
   }
 
