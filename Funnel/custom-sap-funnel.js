@@ -132,11 +132,10 @@ var getScriptPromisify = (src) => {
               tooltip: {
                   trigger: "item",
                   formatter: function(params) {
-                    console.log(params);
                     const dataIndex = params.dataIndex;
                     const absValue = abs_values[dataIndex];
                     const relValue = rel_values[dataIndex];
-                    const delta_abs = dataIndex > 0 ? abs_values[dataIndex - 1] - absValue : 0;
+                    const delta_abs = dataIndex > 0 ? absValue - abs_values[dataIndex - 1] : 0;
                 
                     return `▲ : ${delta_abs} (${relValue}%)`;
                 },
@@ -149,7 +148,7 @@ var getScriptPromisify = (src) => {
                   },
               },
               legend: {
-                  data: legend_measures,
+                  show: 'true',
               },
               series: [
                   {
