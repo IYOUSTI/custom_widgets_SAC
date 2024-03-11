@@ -189,14 +189,6 @@ var getScriptPromisify = (src) => {
           // Event listener for clicking on funnel labels
           myChart.on('click', function (params) {
             console.log('Clicked on label:', params.name);
-            this.dispatchEvent(new Event("onClick"));
-            this.dispatchEvent(new CustomEvent("propertiesChanged", {
-              detail: {
-              properties: {
-                selectedMeasure: params.name
-              }
-              }
-              }));
         });
 
       }
@@ -210,10 +202,6 @@ var getScriptPromisify = (src) => {
         console.log('changedproperties after');
         console.log(changedProperties);
         }
-
-      set selectedMeasure(value) {
-                  this._selectedMeasure = 'test123';
-      }
 
   }
 
