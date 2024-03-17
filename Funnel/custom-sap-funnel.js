@@ -37,6 +37,17 @@ var getScriptPromisify = (src) => {
       this.render();
     }
 
+    setSelectedMeasure(newSelectedMeasure) {
+      this._props.selectedMeasure = newSelectedMeasure;
+      // Dispatch custom event to notify property change
+      this.dispatchEvent(new CustomEvent('propertyChange', {
+        detail: {
+          propertyName: 'selectedMeasure',
+          propertyValue: newSelectedMeasure
+        }
+      }));
+    }
+
     async render() {
       await getScriptPromisify(
         "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
