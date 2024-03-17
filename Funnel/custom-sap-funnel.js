@@ -47,8 +47,7 @@ var getScriptPromisify = (src) => {
         }
       }));
 
-      // Dispatch onClick event
-      this.dispatchEvent(new Event('onClick'));
+      
     }
 
     async render() {
@@ -199,6 +198,8 @@ var getScriptPromisify = (src) => {
       myChart.on('click', (params) => {
         const selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
         this.setSelectedMeasure(selectedMeasure); // Call the setter method to set the selected measure property
+        // Dispatch onClick event
+      this.dispatchEvent(new Event('onClick'));
       });
     }
   }
