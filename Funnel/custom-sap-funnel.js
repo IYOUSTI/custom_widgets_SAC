@@ -37,19 +37,6 @@ var getScriptPromisify = (src) => {
       this.render();
     }
 
-    setSelectedMeasure(newSelectedMeasure) {
-      this._props.selectedMeasure = newSelectedMeasure;
-      // Dispatch custom event to notify property change
-      this.dispatchEvent(new CustomEvent('propertyChange', {
-        detail: {
-          propertyName: 'selectedMeasure',
-          propertyValue: newSelectedMeasure
-        }
-      }));
-
-      
-    }
-
     async render() {
       await getScriptPromisify(
         "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
@@ -196,13 +183,27 @@ var getScriptPromisify = (src) => {
 
       // Event listener for clicking on funnel labels
       myChart.on('click', (params) => {
-        const selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
-        this.setSelectedMeasure(selectedMeasure); // Call the setter method to set the selected measure property
+        const _selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+          detail: {
+          properties: {
+            selectedMeasure: this._selectedMeasure
+          }
+          }
+          }));
+
         // Dispatch onClick event
       this.dispatchEvent(new Event('onClick'));
       });
     }
+
+    set selectedMeasure(newSelectedMeasure) {
+      this._props.selectedMeasure = newSelectedMeasure;  
+    }
+    
   }
+
+  
 
   customElements.define("custom-sap-funnel", Funnel);
 })();
