@@ -24,6 +24,13 @@ var getScriptPromisify = (src) => {
           this._props = {};
 
           this.render();
+
+          this.addEventListener("click", event => {
+            var event = new Event("onClick");
+            console.log('click detected');
+            this.dispatchEvent(event);
+                });
+
       }
 
       onCustomWidgetResize(width, height) {
@@ -43,6 +50,7 @@ var getScriptPromisify = (src) => {
           if (!this._myDataSource || this._myDataSource.state !== "success") {
               return;
           }
+          
           const abs_values = [];
           const rel_values = [];
           const color_measures = [];
@@ -202,6 +210,8 @@ var getScriptPromisify = (src) => {
         console.log('changedproperties after');
         console.log(changedProperties);
         }
+
+      
 
   }
 
