@@ -183,10 +183,8 @@ var getScriptPromisify = (src) => {
 
       // Event listener for clicking on funnel labels
       myChart.on('click', (params) => {
-        console.log(params.name.split(':')[0].trim());
-        const selectedMeasure = params.name.split(':')[0].trim();
-        console.log(params.name.split(':')[0].trim());
-        this.dispatchEvent(new CustomEvent('onClick', { detail: { selectedMeasure } }));
+        const selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
+        this.setSelectedMeasure(selectedMeasure); // Call the setter method to set the selected measure property
       });
     }
   }
