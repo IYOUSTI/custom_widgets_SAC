@@ -183,9 +183,9 @@ var getScriptPromisify = (src) => {
 
       // Event listener for clicking on funnel labels
       myChart.on('click', (params) => {
-        console.log(selectedMeasure);
+        console.log(params.name.split(':')[0].trim());
         const selectedMeasure = params.name.split(':')[0].trim();
-        console.log(selectedMeasure);
+        console.log(params.name.split(':')[0].trim());
         this.dispatchEvent(new CustomEvent('onClick', { detail: { selectedMeasure } }));
       });
     }
