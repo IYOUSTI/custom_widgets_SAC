@@ -46,6 +46,9 @@ var getScriptPromisify = (src) => {
           propertyValue: newSelectedMeasure
         }
       }));
+
+      // Dispatch onClick event
+      this.dispatchEvent(new Event('onClick'));
     }
 
     async render() {
