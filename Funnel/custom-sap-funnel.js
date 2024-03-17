@@ -183,27 +183,27 @@ var getScriptPromisify = (src) => {
 
       // Event listener for clicking on funnel labels
       myChart.on('click', (params) => {
-        const _selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
+        const selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
+        this.selectedMeasure = selectedMeasure; // Set the selected measure property
+
+        // Dispatch propertiesChanged event to notify property change
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
           detail: {
-          properties: {
-            selectedMeasure: this._selectedMeasure
+            properties: {
+              selectedMeasure: this.selectedMeasure
+            }
           }
-          }
-          }));
+        }));
 
         // Dispatch onClick event
-      this.dispatchEvent(new Event('onClick'));
+        this.dispatchEvent(new Event('onClick'));
       });
     }
 
     set selectedMeasure(newSelectedMeasure) {
-      this._props.selectedMeasure = newSelectedMeasure;  
+      this._props.selectedMeasure = newSelectedMeasure;
     }
-    
   }
-
-  
 
   customElements.define("custom-sap-funnel", Funnel);
 })();
