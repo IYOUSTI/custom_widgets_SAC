@@ -153,7 +153,6 @@ var getScriptPromisify = (src) => {
         },
         toolbox: {
           feature: {
-            dataView: { readOnly: false },
             restore: {},
             saveAsImage: {},
           },
