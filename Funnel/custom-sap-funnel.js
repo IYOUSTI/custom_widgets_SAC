@@ -199,7 +199,9 @@ var getScriptPromisify = (src) => {
           },
         ],
       };
+      option.series[0].selected = false;
       myChart.setOption(option);
+      
       
       
       myChart.on("click", (params) => {
