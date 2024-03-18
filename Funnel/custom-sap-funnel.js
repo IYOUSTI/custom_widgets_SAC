@@ -1,5 +1,4 @@
 // custom-sap-funnel.js
-
 var getScriptPromisify = (src) => {
   return new Promise((resolve) => {
     $.getScript(src, resolve);
@@ -36,8 +35,7 @@ var getScriptPromisify = (src) => {
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-      console.log("onCustomWidgetAfterUpdate");
-      console.log("Changed Properties:", changedProperties);
+
     }
 
     getSelectedMeasure() {
@@ -204,12 +202,8 @@ var getScriptPromisify = (src) => {
       };
       myChart.setOption(option);
 
-      // Event listener for clicking on funnel labels
       myChart.on("click", (params) => {
-        console.log('Click detected from JS component');
-        this.setSelectedMeasure(params.name.split(":")[0].trim()); // Extract the measure name
-
-        // Dispatch the 'onClick' event
+        this.setSelectedMeasure(params.name.split(":")[0].trim());
         this.dispatchEvent(new Event('onClick'));
       });
     }
