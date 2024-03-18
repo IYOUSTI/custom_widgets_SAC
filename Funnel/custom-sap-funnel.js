@@ -55,7 +55,7 @@ var getScriptPromisify = (src) => {
     }
 
     unselectFirstSeries() {
-      this.myChart.dispatchAction({ type: 'unselect', seriesIndex: 0 });
+      this.myChart.dispatchAction({ type: 'toggleSelect', seriesIndex: 0 });
       }
 
     set myDataSource(dataBinding) {
