@@ -166,8 +166,8 @@ var getScriptPromisify = (src) => {
         legend: {
           show: true,
           selected: {
-            legendSelected,
-            },
+            ...legendSelected,
+          },
           formatter: function(name) {
             return name.split(':')[0].trim();
           }
