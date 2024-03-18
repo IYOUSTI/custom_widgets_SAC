@@ -211,7 +211,7 @@ var getScriptPromisify = (src) => {
       myChart.setOption(option);
 
       if (this.callIdx < 2) {
-        myChart.unselectFirstSeries();
+        this.unselectFirstSeries();
       }
       
       myChart.on("click", (params) => {
