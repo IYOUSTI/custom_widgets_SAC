@@ -17,19 +17,42 @@ var getScriptPromisify = (src) => {
   class Funnel extends HTMLElement {
     constructor() {
       super();
-
       this._shadowRoot = this.attachShadow({ mode: "open" });
       this._shadowRoot.appendChild(prepared.content.cloneNode(true));
-
       this._root = this._shadowRoot.getElementById("root");
-
+      this._selectedMeasure = "";
       this._props = {};
-
       this.render();
     }
 
     onCustomWidgetResize(width, height) {
       this.render();
+    }
+
+    onCustomWidgetBeforeUpdate(changedProperties) {
+      if ("selectedMeasure" in changedProperties) {
+        this.selectedMeasure = changedProperties["selectedMeasure"];
+      }
+    }
+
+    onCustomWidgetAfterUpdate(changedProperties) {
+      console.log("onCustomWidgetAfterUpdate");
+      console.log("Changed Properties:", changedProperties);
+    }
+
+    getSelectedMeasure() {
+      return this._selectedMeasure;
+    }
+
+    setSelectedMeasure(newSelectedMeasure) {
+      this._selectedMeasure = newSelectedMeasure;
+      this.dispatchEvent(new CustomEvent("propertiesChanged", {
+        detail: {
+          properties: {
+            selectedMeasure: this._selectedMeasure
+          }
+        }
+      }));
     }
 
     set myDataSource(dataBinding) {
@@ -182,26 +205,9 @@ var getScriptPromisify = (src) => {
       myChart.setOption(option);
 
       // Event listener for clicking on funnel labels
-      myChart.on('click', (params) => {
-        const selectedMeasure = params.name.split(':')[0].trim(); // Extract the measure name
-        this.selectedMeasure = selectedMeasure; // Set the selected measure property
-
-        // Dispatch propertiesChanged event to notify property change
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-          detail: {
-            properties: {
-              selectedMeasure: this.selectedMeasure
-            }
-          }
-        }));
-
-        // Dispatch onClick event
-        this.dispatchEvent(new Event('onClick'));
+      myChart.on("click", (params) => {
+        this.setSelectedMeasure(params.name.split(":")[0].trim()); // Extract the measure name
       });
-    }
-
-    set selectedMeasure(newSelectedMeasure) {
-      this._props.selectedMeasure = newSelectedMeasure;
     }
   }
 
