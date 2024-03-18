@@ -206,7 +206,11 @@ var getScriptPromisify = (src) => {
 
       // Event listener for clicking on funnel labels
       myChart.on("click", (params) => {
+        console.log('Click detected from JS component');
         this.setSelectedMeasure(params.name.split(":")[0].trim()); // Extract the measure name
+
+        // Dispatch the 'onClick' event
+        this.dispatchEvent(new Event('onClick'));
       });
     }
   }
