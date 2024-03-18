@@ -195,7 +195,15 @@ var getScriptPromisify = (src) => {
                 fontSize: 20,
               },
             },
-            data: dataset,
+            data: dataset.map((item, index) => ({
+              ...item,
+              emphasis: {
+                label: {
+                  show: index === 0 ? false : true,
+                  fontSize: 20,
+                },
+              },
+            })),
           },
         ],
       };
