@@ -53,12 +53,6 @@ var getScriptPromisify = (src) => {
       }));
     }
 
-    unselectFirstSeries() {
-      if (this.myChart) {
-        this.myChart.dispatchAction({ type: 'toggleSelect', seriesIndex: 0 });
-      }
-    }
-
     set myDataSource(dataBinding) {
       this._myDataSource = dataBinding;
       this.render();
@@ -207,7 +201,6 @@ var getScriptPromisify = (src) => {
       };
       myChart.setOption(option);
       
-      this.unselectFirstSeries();
       
       myChart.on("click", (params) => {
         this.setSelectedMeasure(params.name.split(":")[0].trim());
