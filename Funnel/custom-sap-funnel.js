@@ -67,6 +67,8 @@ var getScriptPromisify = (src) => {
         return;
       }
 
+      const labels = [];
+      const legendSelected = {};
       const abs_values = [];
       const rel_values = [];
       const color_measures = [];
@@ -126,11 +128,15 @@ var getScriptPromisify = (src) => {
               break;
           }
 
+          labels.push(`${measure.label} : ${abs_values[i]} (${rel_values[i]}%)`);
+
           dataset.push({
             value: Number(data[measureValue].raw),
             name: `${measure.label} : ${abs_values[i]} (${rel_values[i]}%)`
           });
         }
+
+        legendSelected[labels[0]] = false;
         return dataset;
       });
 
@@ -159,6 +165,9 @@ var getScriptPromisify = (src) => {
         },
         legend: {
           show: true,
+          selected: {
+            legendSelected,
+            },
           formatter: function(name) {
             return name.split(':')[0].trim();
           }
@@ -199,7 +208,6 @@ var getScriptPromisify = (src) => {
           },
         ],
       };
-      option.series[0].selected = false;
       myChart.setOption(option);
       
       
