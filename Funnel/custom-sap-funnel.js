@@ -21,7 +21,7 @@ var getScriptPromisify = (src) => {
       this._root = this._shadowRoot.getElementById("root");
       this._selectedMeasure = "";
       this._props = {};
-      const firstCall = 0;
+      this.callIdx = 0;
       this.render();
     }
 
@@ -72,8 +72,8 @@ var getScriptPromisify = (src) => {
         return;
       }
 
-      if (firstCall < 2) {
-        firstCall += 1;
+      if (this.callIdx < 2) {
+        this.callIdx += 1;
       }
 
       const abs_values = [];
@@ -210,7 +210,7 @@ var getScriptPromisify = (src) => {
       };
       myChart.setOption(option);
 
-      if (firstCall < 2) {
+      if (this.callIdx < 2) {
         myChart.unselectFirstSeries();
       }
       
