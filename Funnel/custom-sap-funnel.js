@@ -21,6 +21,7 @@ var getScriptPromisify = (src) => {
       this._root = this._shadowRoot.getElementById("root");
       this._selectedMeasure = "";
       this._props = {};
+      const firstCall = 0;
       this.render();
     }
 
@@ -53,6 +54,10 @@ var getScriptPromisify = (src) => {
       }));
     }
 
+    unselectFirstSeries() {
+      this.myChart.dispatchAction({ type: 'unselect', seriesIndex: 0 });
+      }
+
     set myDataSource(dataBinding) {
       this._myDataSource = dataBinding;
       this.render();
@@ -65,6 +70,10 @@ var getScriptPromisify = (src) => {
 
       if (!this._myDataSource || this._myDataSource.state !== "success") {
         return;
+      }
+
+      if (firstCall < 2) {
+        firstCall += 1;
       }
 
       const abs_values = [];
@@ -195,20 +204,16 @@ var getScriptPromisify = (src) => {
                 fontSize: 20,
               },
             },
-            data: dataset.map((item, index) => ({
-              ...item,
-              emphasis: {
-                label: {
-                  show: index === 0 ? false : true,
-                  fontSize: 20,
-                },
-              },
-            })),
+            data: dataset,
           },
         ],
       };
       myChart.setOption(option);
 
+      if (firstCall < 2) {
+        myChart.unselectFirstSeries();
+      }
+      
       myChart.on("click", (params) => {
         this.setSelectedMeasure(params.name.split(":")[0].trim());
         this.dispatchEvent(new Event('onClick'));
